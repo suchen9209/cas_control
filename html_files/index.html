@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选手列表</title>
+    <link rel="stylesheet" href="./css/index.css" type="text/css">
+    <script src="./js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="./js/setting.js" type="text/javascript"></script>
+    <style type="text/css">
+        .box{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul></ul>
+        <div>
+        <p>赛果板：</p>
+        <p><a href="/cas/After_t.html" target="_blank">t方总结</a></p>
+        <p><a href="/cas/After_ct.html" target="_blank">ct方总结</a></p>
+        <p><a href="/cas/MVP.html" target="_blank">MVP板</a><input type="text" name="mvp_id" value="" placeholder="输入MVPID"></p>
+        <p><a href="/cas/Player_data.html" target="_blank">选手对比</a><input type="text" name="l_id" value="" placeholder="输入选手ID">VS<input type="text" name="r_id" value="" placeholder="输入选手ID"></p>
+        <p><a href="/cas/Team.html" target="_blank">队伍对比</a></p>
+
+        <p>实时数据：</p>
+        <p><a href="/cas/right_screen.html" target="_blank">右屏幕</a></p>
+        <p><a href="/cas/left_screen.html" target="_blank">左屏幕</a></p>
+        </div>
+
+    </div>
+    
+    <script type="text/javascript">
+        $.ajax({
+            type:"GET",
+            url:url,
+            success: function(data){
+                if (data.success && data.data != null) {
+                    showlist(data.data);
+                }else{
+                    $.getJSON(json_url,function(data){
+                        showlist(data.data);
+                    });
+                }
+            },
+            error: function(){
+                $.getJSON(json_url,function(data){
+                    showlist(data.data);
+                });
+            }
+        });    
+        function showlist(data){
+            var players = data.players;
+            for (var key in players){
+                $(".box ul").append('<li>'+key+'  =====  '+players[key].player_info.name+'</li>');
+            }
+        }    
+        function openmvp(){
+            var mvp_id = $("input[name='mvp_id']").val();
+            if()
+            window.open('/cas/MVP.html?mvp_id='+mvp_id);
+        }
+
+    </script>
+</body>
+</html>

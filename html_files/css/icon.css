@@ -1,0 +1,182 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ol,ul,li{
+    list-style: none;
+}
+.layout{
+    width: 1515px;
+    height: 506px;
+    margin: 135px auto 72px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+body{
+}
+.icon_box{
+   /* background: #000;*/
+}
+.icon_con>ul.board{
+    width: 100%;
+}
+.icon_con>ul>li{
+    width: 303px;
+    float: left;
+}
+.icon_con>ul>li img{
+    width: 303px;
+    height: 497px;
+}
+.icon_con>ul.board{
+    width: 100%;
+    height: 113px;
+    background: rgba(0,0,0,.7);
+    position: absolute;
+    bottom: 9px;
+}
+.icon_con>ul.board>li{
+    float: left;
+    width: 302px;
+    height: 113px;
+    border-right: 1px solid #8e8371;
+}
+.icon_con>ul.board>li:last-child{
+    border: none;
+}
+
+.icon_con>ul.board>li>div{
+    float: left;
+}
+.gun{
+    width: 163px;
+    height: 56.5px;
+    background: url("../svg/weapon_awp.svg") no-repeat center;
+}
+/*.gun1{
+    
+}
+.gun2{
+    background: url("../svg/weapon_aug.svg") no-repeat center;
+}
+.gun3{
+    background: url("../svg/weapon_ak47.svg") no-repeat center;
+}
+.gun4{
+    background: url("../svg/weapon_cz75a.svg") no-repeat center;
+}
+.gun5{
+    background: url("../svg/weapon_awp.svg") no-repeat center;
+}*/
+.thrown{
+    width: 139px;
+    height: 56.5px;
+}
+.health{
+    width: 163px;
+    height: 56.5px;
+}
+.helmet{
+    width: 139px;
+    height: 56.5px;
+}
+.gun iframe{
+    margin-top: 10px;
+    margin-left: 23px;
+    text-align: center;
+}
+.thrown>ul{
+    width: 100%;
+    height: 100%;
+    margin-right: 15px;
+}
+.thrown>ul>li{
+    width: 27px;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+}
+
+.helmet>ul{
+    width: 100%;
+    height: 100%;
+}
+.helmet>ul>li{
+    width: 34px;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+}
+.li1{
+    background: url("../svg/weapon_decoy.svg") no-repeat center;
+}
+.li2{
+    background: url("../svg/weapon_flashbang.svg") no-repeat center;
+}
+.li3{
+    background: url("../svg/weapon_molotov.svg") no-repeat center;
+}
+.li4{
+    background: url("../svg/weapon_incgrenade.svg") no-repeat center;
+}
+.health{
+    display: flex;
+    align-items: center;
+}
+
+.health>div{
+    float: left;
+    margin-right: 5px;
+}
+.health>div.logo{
+    margin-left: 20px;
+}
+.helmet{
+    display: flex;
+    align-items: center;
+}
+.helmet>div{
+    float: left;
+    margin-right: 5px;
+}
+.helmet>div.logo{
+/*    margin-left: 10px;*/
+}
+.helmet>div:last-child{
+    margin-right: 0px;
+}
+.logo{
+    width: 16px;
+    height: 16px;
+}
+.logo1{
+    background: url("../svg/item_health.svg") no-repeat center;
+    background-size: cover;
+}
+.logo2{
+    background: url("../svg/item_assaultsuit.svg") no-repeat center;
+    background-size: cover;
+}
+.num{
+    font-size:24px;
+    font-family: ltthj, "Microsoft YaHei";
+    font-weight: bold;
+    color: #92886f;
+    width: 44px;
+    text-align: center;
+
+}
+
+progress {
+    width: 60px;
+    height: 12px;
+    border: 1px solid #92886f;
+    background-color:rgba(0,0,0,0);
+    color: #92886f; /*IE10*/
+}
+progress::-moz-progress-bar { background: #92886f; }
+progress::-webkit-progress-bar { background: rgba(0,0,0,0.1); }
+progress::-webkit-progress-value  { background: #92886f; }

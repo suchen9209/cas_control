@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0038)http://i.imbatv.cn/view/csgo_admin.php -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>保存数据</title>
+	<script type="text/javascript" src="./js/jquery-3.3.1.min.js"></script>
+	<script src="./js/setting.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="show"></div>
+	<script type="text/javascript">
+	function send(num,data){
+		$.post(save_url,{num:num,data:JSON.stringify(data)},function(){});
+	}
+
+	var tmp = '';
+	var i = 0;
+	var first_time =true;
+	var time = setInterval(function(){
+		i = i + 1;
+		$.ajax({
+			type:"GET",
+			url:url,
+			success: function(data){
+				if (data.success && data.data != null) {
+					//do nothing
+					//或者读取本地json'
+					tmp = data;
+					send(i,tmp);
+					$("#show").html('第'+i+'次保存');
+				}else{
+					//保存一份本地json，改为electron之后
+					send(-1,tmp);
+					$("#show").html('最终数据保存到final文件中');
+					clearInterval(time);
+				}
+
+				if(first_time){
+
+				}
+				first_time = false;
+			}
+		});
+	},1000);		
+	</script>
+</body>
+
+
+

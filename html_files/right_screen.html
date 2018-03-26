@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ct_screen</title>
+    <link rel="stylesheet" href="./css/icon.css" type="text/css">
+    <script src="./js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="./js/setting.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="icon_box layout">
+        <div class="icon_con">
+            <ul class="player_pic">
+                <li id="pic1"><img src="./1_LGD_CHALICE_R.png" alt=""></li>
+                <li id="pic2"><img src="LGDout/2_LGD_MAYBE_R.png" alt=""></li>
+                <li id="pic3"><img src="LGDout/3_LGD_FY_C.png" alt=""></li>
+                <li id="pic4"><img src="LGDout/4_LGD_XNOVA_L.png" alt=""></li>
+                <li id="pic5"><img src="LGDout/5_LGD_AME_L.png" alt=""></li>            
+            </ul>
+            <ul class="board">
+                <li id="p1">
+                    <div class="gun"></div>
+                    <div class="thrown">
+                        <ul>
+                            <li class="li1"></li>
+                            <li class="li2"></li>
+                            <li class="li3"></li>
+                            <li class="li4"></li>
+                        </ul>
+                    </div>
+                    <div class="health">
+                        <div class="logo logo1"></div>
+                        <div class="num">32</div>
+                        <div class="bar">
+                            <progress value="32" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                    <div class="helmet">
+                        <div class="logo logo2"></div>
+                        <div class="num">65</div>
+                        <div class="bar">
+                            <progress value="65" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                </li>
+                <li id="p2">
+                    <div class="gun gun2"></div>
+                    <div class="thrown">
+                        <ul>
+                            <li class="li1"></li>
+                            <li class="li2"></li>
+                            <li class="li3"></li>
+                            <li class="li4"></li>
+                        </ul>
+                    </div>
+                    <div class="health">
+                        <div class="logo logo1"></div>
+                        <div class="num">32</div>
+                        <div class="bar">
+                            <progress value="32" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                    <div class="helmet">
+                        <div class="logo logo2"></div>
+                        <div class="num">65</div>
+                        <div class="bar">
+                            <progress value="65" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                </li>
+                <li id="p3">
+                    <div class="gun gun3"></div>
+                    <div class="thrown">
+                        <ul>
+                            <li class="li1"></li>
+                            <li class="li2"></li>
+                            <li class="li3"></li>
+                            <li class="li4"></li>
+                        </ul>
+                    </div>
+                    <div class="health">
+                        <div class="logo logo1"></div>
+                        <div class="num">32</div>
+                        <div class="bar">
+                            <progress value="32" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                    <div class="helmet">
+                        <div class="logo logo2"></div>
+                        <div class="num">65</div>
+                        <div class="bar">
+                            <progress value="65" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                </li>
+                <li id="p4">
+                    <div class="gun gun4"></div>
+                    <div class="thrown">
+                        <ul>
+                            <li class="li1"></li>
+                            <li class="li2"></li>
+                            <li class="li3"></li>
+                            <li class="li4"></li>
+                        </ul>
+                    </div>
+                    <div class="health">
+                        <div class="logo logo1"></div>
+                        <div class="num">32</div>
+                        <div class="bar">
+                            <progress value="32" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                    <div class="helmet">
+                        <div class="logo logo2"></div>
+                        <div class="num">65</div>
+                        <div class="bar">
+                            <progress value="65" max="100" class="background-imager"></progress>
+                        </div>
+                    </div>
+                </li>
+                <li id="p5">
+                    <div class="gun gun5"></div>
+                    <div class="thrown">
+                        <ul>
+                            <li class="li1"></li>
+                            <li class="li2"></li>
+                            <li class="li3"></li>
+                            <li class="li4"></li>
+                        </ul>
+                    </div>
+                    <div class="health">
+                        <div class="logo logo1"></div>
+                        <div class="num">32</div>
+                        <div class="bar">
+                            <progress value="32" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                    <div class="helmet">
+                        <div class="logo logo2"></div>
+                        <div class="num">65</div>
+                        <div class="bar">
+                            <progress value="65" max="100" class="bar"></progress>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+    <script type="text/javascript">
+    var i = 200;
+    var time = setInterval(function(){
+        i = i + 1;
+        $.ajax({
+            type:"GET",
+            url:url+2,
+            success: function(data){
+                if (data.success && data.data!=null) {
+                    showdetail(data.data);
+                }else{
+                    json_url = 'http://www.suchen.com:8080/cas_data/tmp_'+i+'.json';
+                    $.getJSON(json_url,function(data){
+                        showdetail(data.data);
+                    });
+                }
+            },
+            error:function(){
+                json_url = 'http://www.suchen.com:8080/cas_data/tmp_'+i+'.json';
+                $.getJSON(json_url,function(data){
+                    showdetail(data.data);
+                });
+            }
+        });
+    },1000);
+    function showdetail(data){
+        var players = data.players;
+        
+        var player_objs = {};
+        for(var key in players){
+            player_objs[players[key].player_info.name] = players[key];
+        }
+        for (var i = 0; i < right_names.length; i++) {
+            j = i + 1;
+            var tmp_name = right_names[i];
+            var tmp_player = player_objs[tmp_name];
+            var weapon = tmp_player.using_weapon;
+            var grenades = tmp_player.grenades;
+            var health =tmp_player.health;
+            var armor =tmp_player.armor;
+            var name = tmp_player.player_info.name;
+
+            $("#pic"+j).html('<img src="./photo/'+name+'.png"></img>');
+            $("#p"+j+" .gun").css("background-image","url(./svg/weapon_"+weapon+".svg)");
+            $("#p"+j+" .thrown ul").html(''); 
+            for(var k in tmp_player.grenades){
+                if(tmp_player.grenades[k].count == 2){
+                    $("#p"+j+" .thrown ul").append('<li class="li1" style="background-image:url(./svg/weapon_'+ tmp_player.grenades[k].name +'.svg)"></li>');
+                }
+                $("#p"+j+" .thrown ul").append('<li class="li1" style="background-image:url(./svg/weapon_'+ tmp_player.grenades[k].name +'.svg)"></li>');
+            }
+            $("#p"+j+" .health .num").html(health);
+            $("#p"+j+" .health progress").attr('value',health);
+            $("#p"+j+" .helmet .num").html(armor);
+            $("#p"+j+" .helmet progress").attr('value',armor);
+
+        }
+    }
+
+    </script>
+</body>
+</html>

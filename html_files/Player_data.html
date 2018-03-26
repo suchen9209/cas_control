@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CAS完美Player_data</title>
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <script src="./js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="./js/setting.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="box">
+        <div class="Player_data_con layout">
+            <div class="Player_name1">
+<!--                 <p class="name1">NEO</p>
+                <p class="name2">FILLIP KUBSKI</p> -->
+            </div>
+            <div class="Player_name2">
+<!--                 <p class="name1">DUPREEH</p>
+                <p class="name2">PETER RASMUSSEN</p> -->
+            </div>
+            <div class="Player_pic">
+                <div class="Player_left">
+<!--                     <img src="img/Player_data_bg3.png" alt=""> -->
+                </div>
+                <div class="Player_right">
+                    <!-- <img src="img/Player_data_bg5.png" alt=""> -->
+                </div>
+            </div>
+            <ul class="contrast">
+                <li id="rating">
+                    <!-- <span class="parts2">1.25</span> -->
+                    <span class="parts3">RATING</span>
+                    <!-- <span class="parts2">1.16</span> -->
+                </li>
+                <li id="kills">
+                   <!--  <span class="parts2">25</span> -->
+                    <span class="parts3">KILLS</span>
+                    <!-- <span class="parts2">15</span> -->
+                </li>
+                <li id="kd_rating">
+                    <!-- <span class="parts2">1.3</span> -->
+                    <span class="parts3">K/D RATING</span>
+                    <!-- <span class="parts2">1.2</span> -->
+                </li>
+                <li id="awp_kills">
+                    <!-- <span class="parts2">26</span> -->
+                    <span class="parts3">AWP KILLS</span>
+                    <!-- <span class="parts2">15</span> -->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var real_name = {
+            Benkai:"Benedict Tan",
+            ImpressioN:"Anthony Lim",   
+            moxie:"Benjamin Kou",
+            splashske:"Nevin Aw ",
+            Tommy :"Kumaresan Ramani",   
+            BURNRUOk:"Callum Henderson",  
+            dexter:"Christopher Nong",
+            Dickstacy:"Ollie Tierney",
+            erkaSt:"Erdenetsogt Gantulga",
+            Gratisfaction:"Sean Kaiwai",
+            glow:"Min-Soo Kim",
+            HSK:"Hae-Sung Kim",
+            solo:"Keun-Chul Kang",
+            XigN:"Hyun-Pyo Lee  ",
+            zeff:"Min-Seok Park ",
+            BnTeT:"Hansel Ferdinand",    
+            captainMo:"Ke Liu",
+            DD:"Hui Wu",
+            somebody:"HaoWen Xu ",
+            xccurate:"Kevin Susanto",
+            csgogo6:"hah IIDF",
+            yangyu017:"sadf IOUO"
+        };
+        $.ajax({
+            type:"GET",
+            url:url,
+            success: function(data){
+                if (data.success && data.data != null) {
+                    showcmp(data.data,left_id,right_id);
+                }else{
+                    $.getJSON(json_url,function(data){
+                        showcmp(data.data,left_id,right_id);
+                    });
+                }
+            },
+            error: function(){
+                $.getJSON(json_url,function(data){
+                    showcmp(data.data,left_id,right_id);
+                });
+            }
+        });        
+        function showcmp(data,lid,rid){
+            var players = data.players;
+            var lp = players[lid];
+            var rp = players[rid];
+            //left
+            $(".Player_name1").append('<p class="name1">'+ lp.player_info.name +'</p>');
+            if(jQuery.inArray(lp.player_info.name,Object.keys(real_name)) > -1){
+                $(".Player_name1").append('<p class="name2">'+ eval("real_name."+lp.player_info.name) +'</p>');
+            }
+            $(".Player_left").append('<img src="./photo/'+lp.player_info.name+'_R.png" alt="">');
+            $("#rating").prepend('<span class="parts2">'+ lp.rating +'</span>');
+            $("#kills").prepend('<span class="parts2">'+ lp.kill +'</span>');
+            if(lp.death==0){
+                lp.death=1;
+            }
+            $("#kd_rating").prepend('<span class="parts2">'+ (lp.kill/lp.death).toFixed(2) +'</span>');
+            $("#awp_kills").prepend('<span class="parts2">'+ lp.sniper_kill +'</span>');
+            //right
+            $(".Player_name2").append('<p class="name1">'+ rp.player_info.name +'</p>');
+            if(jQuery.inArray(rp.player_info.name,Object.keys(real_name)) > -1){
+                $(".Player_name2").append('<p class="name2">'+ eval("real_name."+rp.player_info.name) +'</p>');
+            }
+            $(".Player_right").append('<img src="./photo/'+rp.player_info.name+'_L.png" alt="">');
+            $("#rating").append('<span class="parts2">'+ rp.rating +'</span>');
+            $("#kills").append('<span class="parts2">'+ rp.kill +'</span>');
+            if(rp.death==0){
+                rp.death=1;
+            }
+            $("#kd_rating").append('<span class="parts2">'+ (rp.kill/rp.death).toFixed(2) +'</span>');
+            $("#awp_kills").append('<span class="parts2">'+ rp.sniper_kill +'</span>');
+        }
+
+    </script>
+</body>
+</html>
