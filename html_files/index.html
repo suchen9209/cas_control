@@ -10,11 +10,44 @@
         .box{
             text-align: center;
         }
+        .cbtn{
+            text-align: center;
+            width: 100px;
+            height: 50px;
+            display: inline-block;
+            background: yellowgreen;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        .player_box{
+            width: 500px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .player{
+            display: inline-block;
+            width: 49%;
+            height: 40px;
+            background: turquoise;
+            line-height: 40px;
+            cursor: pointer;
+            margin-left: 1px;
+            margin-top: 1px;
+        }
+        .selected{
+            background: yellow;
+        }
     </style>
 </head>
 <body>
     <div class="box">
-        <ul></ul>
+        <span>选手列表：</span>
+        <div class="player_box">
+
+        </div>
+        <br/>
+        <div class="cbtn" id="after_t">T方总结</div>&nbsp;<div class="cbtn" id="after_ct">CT方总结</div><br/>
+        <div class="cbtn" id="mvp">MVP</div>
         <div>
         <p>赛果板：</p>
         <p><a href="/cas/After_t.html" target="_blank">t方总结</a></p>
@@ -52,15 +85,21 @@
         function showlist(data){
             var players = data.players;
             for (var key in players){
-                $(".box ul").append('<li>'+key+'  =====  '+players[key].player_info.name+'</li>');
+                $(".player_box").append('<div class="player" data="'+key+'" id="p'+key+'">'+key+'-----'+players[key].player_info.name+'</div>');
             }
+            $(".player").on("click",function(){
+                if($(this).hasClass('selected')){
+                    $(this).removeClass('selected');
+                }else{
+                    $(this).addClass('selected');
+                }
+                mvp_id = $(this).attr('data');
+            });
         }    
-        function openmvp(){
-            var mvp_id = $("input[name='mvp_id']").val();
-            if()
-            window.open('/cas/MVP.html?mvp_id='+mvp_id);
-        }
 
+    </script>
+    <script type="text/javascript">
+        require('../control/after.js')
     </script>
 </body>
 </html>

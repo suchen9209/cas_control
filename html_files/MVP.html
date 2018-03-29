@@ -42,6 +42,8 @@
         </div>
     </div>
         <script type="text/javascript">
+        const {ipcRenderer} = require('electron');
+        mvp_id = ipcRenderer.sendSync('get-setting', 'mvp_id');
         $.ajax({
             type:"GET",
             url:url,
